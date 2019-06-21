@@ -7,33 +7,29 @@ using System.Threading;
 
 namespace Thread_1
 {
+
+    
     class Program
     {
-
-        static void Func()
+        static void Func1()
         {
-            Console.WriteLine("스레드에서 호출");
+            Console.WriteLine("스레드1 호출");
         }
 
-        static void ParameterizedFunc2(object obj)
+        static void Func2()
         {
-            for(int i=0;i<(int)obj;i++)
-            {
-                Console.WriteLine("Parameterized 스레드에서 호출 : {0}",i);
-            }
+            Console.WriteLine("스레드2 호출");
         }
 
         static void Main(string[] args)
         {
-            ////Thread th = new Thread(new ThreadStart(Func));
+            Thread th1 = new Thread(new ThreadStart(Func1));
+            Thread th2 = new Thread(new ThreadStart(Func2));
 
-            //ThreadStart thStart = new ThreadStart(Func);
-            //Thread th = new Thread(thStart);
-            //th.Start();
+            th1.Start();
+            th2.Start();
 
-            int i = 5;
-            Thread th2 = new Thread(new ParameterizedThreadStart(ParameterizedFunc2));
-            th2.Start(i);
+            Console.WriteLine("메인 종료");
         }
     }
 }
