@@ -11,7 +11,11 @@ namespace Thread_1
     {
         static void Func1()
         {
-            Console.WriteLine("2번 스레드 : {0}",Thread.CurrentThread.GetHashCode());
+            for(int i=0;i<30;i++)
+            {
+                Console.WriteLine("{0}",i);
+                Thread.Sleep(300);
+            }
         }
 
         
@@ -20,7 +24,7 @@ namespace Thread_1
             Thread th = new Thread(new ThreadStart(Func1));
             
             th.Start();
-            Console.WriteLine("메인 스레드 {0}", Thread.CurrentThread.GetHashCode());
+            th.Join();
             Console.WriteLine("메인 종료");
         }
     }
